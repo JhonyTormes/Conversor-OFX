@@ -5,7 +5,7 @@ Precisei pesquisar um pouco sobre arquifos OFX (Uma linguagem padronizada de arq
 
 ## Atualizações futuras
 
-Inicialmente o programa passará apenas por uma formulação visual. Farei uma interface melhor para a visualização do arquivo importado e o arquivo convertido,o programa continuará realizando apenas a função de converter o tipo do arquivo.
+Inicialmente o programa passará apenas por uma reformulação visual. Farei uma interface melhor para a visualização do arquivo importado e o arquivo convertido,o programa continuará realizando apenas a função de converter o tipo do arquivo.
 Futuramente poderá ser implementada desserialização do arquivo convertido para visualização dos dados em grid.
 
 ### Tecnologia utilizada.
