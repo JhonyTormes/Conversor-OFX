@@ -1,0 +1,6 @@
+C:\Users\jhony.silva\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\ConversorOFX.frmPrincipal.resources
+C:\Users\jhony.silva\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\jhony.silva\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Conversor OFX.csproj.GenerateResource.cache
+C:\Users\jhony.silva\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Conversor OFX.csproj.CoreCompileInputs.cache
+C:\Users\jhony.silva\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\jhony.silva\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
