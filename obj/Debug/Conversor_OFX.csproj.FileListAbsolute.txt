@@ -30,3 +30,19 @@ C:\ProjetosJhony\Conversor_OFX\obj\Debug\Conversor_OFX.application
 C:\ProjetosJhony\Conversor_OFX\obj\Debug\Conversor_OFX.csproj.CopyComplete
 C:\ProjetosJhony\Conversor_OFX\obj\Debug\Conversor_OFX.exe
 C:\ProjetosJhony\Conversor_OFX\obj\Debug\Conversor_OFX.pdb
+C:\ProjetosJhony\Conversor OFX\bin\Debug\Conversor_OFX.exe.config
+C:\ProjetosJhony\Conversor OFX\bin\Debug\Conversor_OFX.exe.manifest
+C:\ProjetosJhony\Conversor OFX\bin\Debug\Conversor_OFX.application
+C:\ProjetosJhony\Conversor OFX\bin\Debug\Conversor_OFX.exe
+C:\ProjetosJhony\Conversor OFX\bin\Debug\Conversor_OFX.pdb
+C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.csproj.AssemblyReference.cache
+C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.csproj.SuggestedBindingRedirects.cache
+C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.frmPrincipal.resources
+C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.Properties.Resources.resources
+C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.csproj.GenerateResource.cache
+C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.csproj.CoreCompileInputs.cache
+C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.exe.manifest
+C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.application
+C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.csproj.CopyComplete
+C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.exe
+C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.pdb
