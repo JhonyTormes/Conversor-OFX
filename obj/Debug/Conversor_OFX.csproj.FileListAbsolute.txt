@@ -46,3 +46,4 @@ C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.application
 C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.csproj.CopyComplete
 C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.exe
 C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.pdb
+C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.frmTransacoes.resources

@@ -17,7 +17,7 @@ namespace Conversor_OFX
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmPrincipal());
-
+            
             
         }
     }

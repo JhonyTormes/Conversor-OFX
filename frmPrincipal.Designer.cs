@@ -35,13 +35,14 @@
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnConverter = new System.Windows.Forms.Button();
+            this.lblDesserializar = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // txtConteudo
             // 
             this.txtConteudo.AcceptsReturn = true;
             this.txtConteudo.AcceptsTab = true;
-            this.txtConteudo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtConteudo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtConteudo.Location = new System.Drawing.Point(12, 12);
             this.txtConteudo.Multiline = true;
@@ -55,7 +56,7 @@
             // 
             this.txtXML.AcceptsReturn = true;
             this.txtXML.AcceptsTab = true;
-            this.txtXML.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtXML.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtXML.Location = new System.Drawing.Point(546, 12);
             this.txtXML.Multiline = true;
@@ -106,11 +107,24 @@
             this.btnConverter.UseVisualStyleBackColor = true;
             this.btnConverter.Click += new System.EventHandler(this.btnConverter_Click);
             // 
+            // lblDesserializar
+            // 
+            this.lblDesserializar.AutoSize = true;
+            this.lblDesserializar.Location = new System.Drawing.Point(468, 481);
+            this.lblDesserializar.Name = "lblDesserializar";
+            this.lblDesserializar.Size = new System.Drawing.Size(70, 17);
+            this.lblDesserializar.TabIndex = 9;
+            this.lblDesserializar.TabStop = true;
+            this.lblDesserializar.Text = "Desserializar";
+            this.lblDesserializar.UseCompatibleTextRendering = true;
+            this.lblDesserializar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblDesserializar_LinkClicked);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 537);
+            this.Controls.Add(this.lblDesserializar);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.btnAbrir);
@@ -135,6 +149,7 @@
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnConverter;
+        private System.Windows.Forms.LinkLabel lblDesserializar;
     }
 }
 

@@ -9,6 +9,7 @@ namespace Conversor_OFX.Models
 {
     static class TratarXml
     {
+        
         static public string Identador(this XmlDocument doc)
         {
             StringBuilder sb = new StringBuilder();
@@ -28,5 +29,7 @@ namespace Conversor_OFX.Models
             }
             return sb.ToString();
         }
+
+ 
     }
 }

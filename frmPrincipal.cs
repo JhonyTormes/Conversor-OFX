@@ -5,6 +5,11 @@ using System.Windows.Forms;
 using System.Globalization;
 using System.Xml;
 using Conversor_OFX.Models;
+using System.Security.Cryptography;
+using System.Xml.Serialization;
+using System.Data;
+using Xml2CSharp;
+using System.Collections.Generic;
 
 namespace Conversor_OFX
 {
@@ -18,7 +23,7 @@ namespace Conversor_OFX
             InitializeComponent();
         }
 
-
+        
         private void txtXML_TextChanged(object sender, EventArgs e)
         {
         }
@@ -156,5 +161,27 @@ namespace Conversor_OFX
             }
             
         }
+
+        private void lblDesserializar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show("Esse link label foi criado para fins de estudo do objeto DataGridView, ao clicar nele você" +
+                            " poderá escolher um arquivo XML que será transformado em objeto(Para vizualizar faça um debug), e depois" +
+                            " os dados desse objeto serão inseridos em uma DataGridView","Aviso!",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
+            try
+            {
+                frmTransacoes frmtransacoes = new frmTransacoes();
+                frmtransacoes.Show();
+                frmtransacoes.ColorirCelulas();
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"Não foi possível desserializar o arquivo\nErro: {ex}");
+            }
+
+        }
+
+
     }
+
 }

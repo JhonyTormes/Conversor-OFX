@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Conversor_OFX.exe" size="30720">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Conversor_OFX.exe" size="41984">
       <assemblyIdentity name="Conversor_OFX" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>z9CzTnP2bubUkWjXs56gXghJusnWurHWsXAZNcnucMQ=</dsig:DigestValue>
+        <dsig:DigestValue>7pKrzRukx8AEbDG8/IQoxsNM3S/Hi2trr1vXEQ/tNgM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
