@@ -5,11 +5,6 @@ using System.Windows.Forms;
 using System.Globalization;
 using System.Xml;
 using Conversor_OFX.Models;
-using System.Security.Cryptography;
-using System.Xml.Serialization;
-using System.Data;
-using Xml2CSharp;
-using System.Collections.Generic;
 
 namespace Conversor_OFX
 {
@@ -172,6 +167,7 @@ namespace Conversor_OFX
                 frmTransacoes frmtransacoes = new frmTransacoes();
                 frmtransacoes.Show();
                 frmtransacoes.ColorirCelulas();
+                frmtransacoes.inserirValorEmNulos();
             }
             catch (Exception ex)
             {

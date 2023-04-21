@@ -42,36 +42,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Conversor_OFX.exe" size="41984">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Conversor_OFX.exe" size="57344">
       <assemblyIdentity name="Conversor_OFX" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>7pKrzRukx8AEbDG8/IQoxsNM3S/Hi2trr1vXEQ/tNgM=</dsig:DigestValue>
+        <dsig:DigestValue>jwJgVVWQp+Uxs7tVGCV6nMNosgntMG+tm9JLQFo/Z74=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Xstream.Core.dll" size="32768">
-      <assemblyIdentity name="Xstream.Core" version="1.0.4471.16137" publicKeyToken="D3E5E2394D154DB4" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>mazEtkqldszjtSomsyBjXF2tctsSzBODuqro7gZZ21E=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <file name="Conversor_OFX.exe.config" size="184">
+  <file name="Conversor_OFX.exe.config" size="292">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>FihlZtVNgcNyH37Pf0Jtll3jZOm+L55ijXNjtoS2/mo=</dsig:DigestValue>
+      <dsig:DigestValue>62Wsl7ZFV8wskNuzppymj387ZP9UeoU/uJkA/xgT9iQ=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

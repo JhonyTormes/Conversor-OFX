@@ -117,10 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="SELECIONAR.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="sTMTTRNBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <data name="txbScript.Text" xml:space="preserve">
+    <value>CREATE DATABASE CONVERSOR
+
+USE CONVERSOR
+
+CREATE TABLE Transacoes(Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+						TRNTYPE VARCHAR(10),
+						DTPOSTED  VARCHAR(30),
+						TRNAMT NVARCHAR(50),
+						FITID NVARCHAR(50),
+						CHECKNUM NVARCHAR(50),
+						NAME VARCHAR(50),
+						MEMO VARCHAR(100),
+						SHA1 VARCHAR(40))</value>
+  </data>
 </root>

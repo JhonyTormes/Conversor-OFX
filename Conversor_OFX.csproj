@@ -75,16 +75,28 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Xstream.Core, Version=1.0.4471.16137, Culture=neutral, PublicKeyToken=d3e5e2394d154db4, processorArchitecture=MSIL">
-      <HintPath>..\packages\XStream.1.0.44.2\lib\net40\Xstream.Core.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ConfiguraBanco.cs" />
+    <Compile Include="Classes\ConsultaSha1.cs" />
+    <Compile Include="Classes\GerarSha1.cs" />
+    <Compile Include="frmConfigBanco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConfigBanco.Designer.cs">
+      <DependentUpon>frmConfigBanco.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmScriptBanco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmScriptBanco.Designer.cs">
+      <DependentUpon>frmScriptBanco.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTransacoes.cs">
       <SubType>Form</SubType>
@@ -92,13 +104,21 @@
     <Compile Include="frmTransacoes.Designer.cs">
       <DependentUpon>frmTransacoes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\TratarXml.cs" />
-    <Compile Include="Models\XML_OFX.cs" />
+    <Compile Include="Classes\ConexaoSQL.cs" />
+    <Compile Include="Classes\SalvarNoBanco.cs" />
+    <Compile Include="Classes\TratarXml.cs" />
+    <Compile Include="Classes\XML_OFX.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmConfigBanco.resx">
+      <DependentUpon>frmConfigBanco.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmScriptBanco.resx">
+      <DependentUpon>frmScriptBanco.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTransacoes.resx">
       <DependentUpon>frmTransacoes.cs</DependentUpon>
@@ -114,7 +134,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Conversor de OFX para XML_TemporaryKey.pfx" />
-    <None Include="packages.config" />
     <None Include="Properties\DataSources\Xml2CSharp.STMTTRN.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

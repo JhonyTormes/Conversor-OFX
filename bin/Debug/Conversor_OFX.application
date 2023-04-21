@@ -7,14 +7,14 @@
     <framework targetVersion="4.8" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Conversor_OFX.exe.manifest" size="4196">
+    <dependentAssembly dependencyType="install" codebase="Conversor_OFX.exe.manifest" size="3513">
       <assemblyIdentity name="Conversor_OFX.exe" version="1.0.0.3" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>BgIyRtxrsJrSs5EHVtwwRqud5pGETCvkaJMZIw5zWaY=</dsig:DigestValue>
+        <dsig:DigestValue>n1vK+jWn6QRuRN6msZaYgxvWgoEABxs2Wp2/Dea9bwA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
