@@ -18,12 +18,6 @@ namespace Conversor_OFX
             InitializeComponent();
         }
 
-        
-        private void txtXML_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-
         private void btnAbrir_Click(object sender, EventArgs e)
         {
             //Abre o arquivo e executa a leitura, retornando o seu conteúdo para a propriedade Caminho, para que
@@ -165,7 +159,7 @@ namespace Conversor_OFX
             try
             {
                 frmTransacoes frmtransacoes = new frmTransacoes();
-                frmtransacoes.Show();
+                frmtransacoes.ShowDialog();
                 frmtransacoes.ColorirCelulas();
                 frmtransacoes.inserirValorEmNulos();
             }

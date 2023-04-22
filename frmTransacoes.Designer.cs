@@ -29,11 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTransacoes));
             this.lblTransacoes = new System.Windows.Forms.Label();
             this.dataGridViewTransacoes = new System.Windows.Forms.DataGridView();
-            this.btnSalvarNoBanco = new System.Windows.Forms.Button();
             this.SELECIONAR = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.lblSelecionar = new System.Windows.Forms.LinkLabel();
             this.tRNTYPEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dTPOSTEDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tRNAMTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,7 +41,10 @@
             this.nAMEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mEMODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sTMTTRNBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnSalvarNoBanco = new System.Windows.Forms.Button();
+            this.lblSelecionar = new System.Windows.Forms.LinkLabel();
             this.lblDesselecionarTodos = new System.Windows.Forms.LinkLabel();
+            this.lblQtdTransacoes = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTransacoes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTMTTRNBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -81,17 +83,7 @@
             this.dataGridViewTransacoes.Name = "dataGridViewTransacoes";
             this.dataGridViewTransacoes.Size = new System.Drawing.Size(984, 447);
             this.dataGridViewTransacoes.TabIndex = 0;
-            this.dataGridViewTransacoes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTransacoes_CellContentClick);
-            // 
-            // btnSalvarNoBanco
-            // 
-            this.btnSalvarNoBanco.Location = new System.Drawing.Point(453, 502);
-            this.btnSalvarNoBanco.Name = "btnSalvarNoBanco";
-            this.btnSalvarNoBanco.Size = new System.Drawing.Size(109, 24);
-            this.btnSalvarNoBanco.TabIndex = 2;
-            this.btnSalvarNoBanco.Text = "Salvar no banco";
-            this.btnSalvarNoBanco.UseVisualStyleBackColor = true;
-            this.btnSalvarNoBanco.Click += new System.EventHandler(this.btnSalvarNoBanco_Click);
+            this.dataGridViewTransacoes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTransacoes_CellContentClick_1);
             // 
             // SELECIONAR
             // 
@@ -100,23 +92,11 @@
             this.SELECIONAR.Name = "SELECIONAR";
             this.SELECIONAR.Width = 30;
             // 
-            // lblSelecionar
-            // 
-            this.lblSelecionar.AutoSize = true;
-            this.lblSelecionar.Location = new System.Drawing.Point(12, 490);
-            this.lblSelecionar.Name = "lblSelecionar";
-            this.lblSelecionar.Size = new System.Drawing.Size(86, 13);
-            this.lblSelecionar.TabIndex = 3;
-            this.lblSelecionar.TabStop = true;
-            this.lblSelecionar.Text = "Selecionar todos";
-            this.lblSelecionar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblSelecionar_LinkClicked);
-            // 
             // tRNTYPEDataGridViewTextBoxColumn
             // 
             this.tRNTYPEDataGridViewTextBoxColumn.DataPropertyName = "TRNTYPE";
             this.tRNTYPEDataGridViewTextBoxColumn.HeaderText = "TRNTYPE";
             this.tRNTYPEDataGridViewTextBoxColumn.Name = "tRNTYPEDataGridViewTextBoxColumn";
-            this.tRNTYPEDataGridViewTextBoxColumn.ReadOnly = true;
             this.tRNTYPEDataGridViewTextBoxColumn.Width = 83;
             // 
             // dTPOSTEDDataGridViewTextBoxColumn
@@ -125,7 +105,6 @@
             this.dTPOSTEDDataGridViewTextBoxColumn.DataPropertyName = "DTPOSTED";
             this.dTPOSTEDDataGridViewTextBoxColumn.HeaderText = "DTPOSTED";
             this.dTPOSTEDDataGridViewTextBoxColumn.Name = "dTPOSTEDDataGridViewTextBoxColumn";
-            this.dTPOSTEDDataGridViewTextBoxColumn.ReadOnly = true;
             this.dTPOSTEDDataGridViewTextBoxColumn.Width = 99;
             // 
             // tRNAMTDataGridViewTextBoxColumn
@@ -133,7 +112,6 @@
             this.tRNAMTDataGridViewTextBoxColumn.DataPropertyName = "TRNAMT";
             this.tRNAMTDataGridViewTextBoxColumn.HeaderText = "TRNAMT";
             this.tRNAMTDataGridViewTextBoxColumn.Name = "tRNAMTDataGridViewTextBoxColumn";
-            this.tRNAMTDataGridViewTextBoxColumn.ReadOnly = true;
             this.tRNAMTDataGridViewTextBoxColumn.Width = 78;
             // 
             // fITIDDataGridViewTextBoxColumn
@@ -141,7 +119,6 @@
             this.fITIDDataGridViewTextBoxColumn.DataPropertyName = "FITID";
             this.fITIDDataGridViewTextBoxColumn.HeaderText = "FITID";
             this.fITIDDataGridViewTextBoxColumn.Name = "fITIDDataGridViewTextBoxColumn";
-            this.fITIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.fITIDDataGridViewTextBoxColumn.Width = 59;
             // 
             // cHECKNUMDataGridViewTextBoxColumn
@@ -149,7 +126,6 @@
             this.cHECKNUMDataGridViewTextBoxColumn.DataPropertyName = "CHECKNUM";
             this.cHECKNUMDataGridViewTextBoxColumn.HeaderText = "CHECKNUM";
             this.cHECKNUMDataGridViewTextBoxColumn.Name = "cHECKNUMDataGridViewTextBoxColumn";
-            this.cHECKNUMDataGridViewTextBoxColumn.ReadOnly = true;
             this.cHECKNUMDataGridViewTextBoxColumn.Width = 93;
             // 
             // nAMEDataGridViewTextBoxColumn
@@ -158,7 +134,6 @@
             this.nAMEDataGridViewTextBoxColumn.DataPropertyName = "NAME";
             this.nAMEDataGridViewTextBoxColumn.HeaderText = "NAME";
             this.nAMEDataGridViewTextBoxColumn.Name = "nAMEDataGridViewTextBoxColumn";
-            this.nAMEDataGridViewTextBoxColumn.ReadOnly = true;
             this.nAMEDataGridViewTextBoxColumn.Width = 245;
             // 
             // mEMODataGridViewTextBoxColumn
@@ -173,6 +148,27 @@
             // 
             this.sTMTTRNBindingSource.DataSource = typeof(Xml2CSharp.STMTTRN);
             // 
+            // btnSalvarNoBanco
+            // 
+            this.btnSalvarNoBanco.Location = new System.Drawing.Point(453, 502);
+            this.btnSalvarNoBanco.Name = "btnSalvarNoBanco";
+            this.btnSalvarNoBanco.Size = new System.Drawing.Size(109, 24);
+            this.btnSalvarNoBanco.TabIndex = 2;
+            this.btnSalvarNoBanco.Text = "Salvar no banco";
+            this.btnSalvarNoBanco.UseVisualStyleBackColor = true;
+            this.btnSalvarNoBanco.Click += new System.EventHandler(this.btnSalvarNoBanco_Click);
+            // 
+            // lblSelecionar
+            // 
+            this.lblSelecionar.AutoSize = true;
+            this.lblSelecionar.Location = new System.Drawing.Point(12, 490);
+            this.lblSelecionar.Name = "lblSelecionar";
+            this.lblSelecionar.Size = new System.Drawing.Size(86, 13);
+            this.lblSelecionar.TabIndex = 3;
+            this.lblSelecionar.TabStop = true;
+            this.lblSelecionar.Text = "Selecionar todos";
+            this.lblSelecionar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblSelecionar_LinkClicked);
+            // 
             // lblDesselecionarTodos
             // 
             this.lblDesselecionarTodos.AutoSize = true;
@@ -184,19 +180,30 @@
             this.lblDesselecionarTodos.Text = "Desselecionar todos";
             this.lblDesselecionarTodos.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblDesselecionarTodos_LinkClicked);
             // 
+            // lblQtdTransacoes
+            // 
+            this.lblQtdTransacoes.AutoSize = true;
+            this.lblQtdTransacoes.Location = new System.Drawing.Point(839, 490);
+            this.lblQtdTransacoes.Name = "lblQtdTransacoes";
+            this.lblQtdTransacoes.Size = new System.Drawing.Size(137, 13);
+            this.lblQtdTransacoes.TabIndex = 5;
+            this.lblQtdTransacoes.Text = "0 Transações selecionadas";
+            // 
             // frmTransacoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 537);
+            this.Controls.Add(this.lblQtdTransacoes);
             this.Controls.Add(this.lblDesselecionarTodos);
             this.Controls.Add(this.lblSelecionar);
             this.Controls.Add(this.btnSalvarNoBanco);
             this.Controls.Add(this.lblTransacoes);
             this.Controls.Add(this.dataGridViewTransacoes);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmTransacoes";
-            this.Text = "frmTransacoes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmTransacoes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTransacoes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTMTTRNBindingSource)).EndInit();
@@ -220,5 +227,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn mEMODataGridViewTextBoxColumn;
         private System.Windows.Forms.LinkLabel lblSelecionar;
         private System.Windows.Forms.LinkLabel lblDesselecionarTodos;
+        private System.Windows.Forms.Label lblQtdTransacoes;
     }
 }

@@ -65,7 +65,6 @@
             this.txtXML.Size = new System.Drawing.Size(450, 482);
             this.txtXML.TabIndex = 2;
             this.txtXML.WordWrap = false;
-            this.txtXML.TextChanged += new System.EventHandler(this.txtXML_TextChanged);
             // 
             // btnAbrir
             // 

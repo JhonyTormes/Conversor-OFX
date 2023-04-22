@@ -8,6 +8,8 @@ using System.Xml.Serialization;
 using Conversor_OFX.Models;
 using System.Xml;
 using Conversor_OFX.Classes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+using System.Linq;
 
 namespace Conversor_OFX
 {
@@ -20,6 +22,8 @@ namespace Conversor_OFX
         {
             try
             {
+                //Abrir arquivo XML que será desserializado
+
                 InitializeComponent();
                 OpenFileDialog caminhoXML = new OpenFileDialog();
                 caminhoXML.Filter = "Arquivo XML | *.xml";
@@ -42,6 +46,17 @@ namespace Conversor_OFX
 
         }
 
+        private void frmTransacoes_Load(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridViewTransacoes.Rows)
+            {
+                row.Cells[0].Value = false;
+                inserirValorEmNulos();
+                ColorirCelulas();
+            }
+        }
+
+        //Para evitar erros com valores nulos no banco, foi criado esse método que insere um hífen em todos os nulos
         public void inserirValorEmNulos()
         {
             foreach (DataGridViewRow row in dataGridViewTransacoes.Rows)
@@ -80,10 +95,14 @@ namespace Conversor_OFX
             }
 
         }
-        private void dataGridViewTransacoes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
+        //Salva as transações selecionadas no banco de dados, antes de fazer o insert, é gerado um hash sha1 para a string
+        //da concatenação de todos os dados da transação e então é validado se esse hash já não está salvo no banco,
+        //fazendo com que não seja possível registrar uma transação com todos os campos exatamente iguais
+        //
+        //OBS: Quando o método ConexaoSQL é chamado para salvar as informações, são executados testes de acesso ao SQL com as informações
+        //do arquivo C://Config.txt, do acesso ao banco CONVERSOR, e de acesso à tabela Transações. Caso algum falhe, será aberto o Form
+        //para realizar a configuração, ou instruções de criação do banco e inicialização do SQL Server
 
         private void btnSalvarNoBanco_Click(object sender, EventArgs e)
         {
@@ -92,7 +111,7 @@ namespace Conversor_OFX
             {
                 if (row.Cells[0].Value.Equals(true))
                 {
-                    contarCheckBoxMarcadas ++;  
+                    contarCheckBoxMarcadas++;
                 }
             }
 
@@ -104,11 +123,20 @@ namespace Conversor_OFX
                 int registrosNaoSalvos = 0;
 
                 ConexaoSQL conexao = new ConexaoSQL();
-                while (!conexao.testarConexao())
+                do
                 {
-                    frmConfigBanco configBanco = new frmConfigBanco();
-                    configBanco.ShowDialog();
-                }
+                    (bool sucesso, bool abrirFormConfig) = conexao.testarConexao();
+                    if (sucesso == false)
+                    {
+                        if (abrirFormConfig == true)
+                        {
+                            frmConfigBanco configBanco = new frmConfigBanco();
+                            configBanco.ShowDialog();
+                        }
+                    }
+
+                } while (conexao.testarConexao() != (true, false));
+
 
                 foreach (DataGridViewRow row in dataGridViewTransacoes.Rows)
                 {
@@ -141,8 +169,10 @@ namespace Conversor_OFX
                         else
                         {
                             registrosSalvos += 1;
+                            row.DefaultCellStyle.Font = new Font(DefaultFont, FontStyle.Bold);
                         }
                     }
+
 
                 }
                 if (registrosSalvos > 0 && registrosNaoSalvos == 0)
@@ -160,7 +190,14 @@ namespace Conversor_OFX
                     MessageBox.Show($"Nenhum registro foi salvo!\nTodas as transações" +
                                     " selecionadas estavam duplicadas", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                
+
+                //Desselecionar celulas
+                foreach (DataGridViewRow row in dataGridViewTransacoes.Rows)
+                {
+                    ((DataGridViewCheckBoxCell)row.Cells[0]).Value = false;
+                }
+                lblQtdTransacoes.Text = "0 Transações selecionadas";
+
             }
             else
             {
@@ -168,28 +205,55 @@ namespace Conversor_OFX
             }
 
         }
-        private void frmTransacoes_Load(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow row in dataGridViewTransacoes.Rows)
-            {
-                row.Cells[0].Value = "False";
-            }
-        }
-
+        //Atualiza label de transações selecionadas
         private void lblSelecionar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            int contador = 0;
             foreach (DataGridViewRow row in dataGridViewTransacoes.Rows)
             {
                 ((DataGridViewCheckBoxCell)row.Cells[0]).Value = true;
+                contador++;
             }
+            lblQtdTransacoes.Text = $"{contador} Transações selecionadas";
         }
-
+        //Atualiza label de transações selecionadas
         private void lblDesselecionarTodos_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             foreach (DataGridViewRow row in dataGridViewTransacoes.Rows)
             {
                 ((DataGridViewCheckBoxCell)row.Cells[0]).Value = false;
             }
+            lblQtdTransacoes.Text = "0 Transações selecionadas";
+        }
+        //Atualiza label de transações selecionadas
+        private void dataGridViewTransacoes_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            int contador = 0;
+            foreach (DataGridViewRow linha in dataGridViewTransacoes.Rows)
+            { 
+                var cell = linha.Cells[0] as DataGridViewCheckBoxCell;
+                if ((bool)cell.EditedFormattedValue)
+                {
+                    contador++;
+                }
+
+            }
+            lblQtdTransacoes.Text = $"{contador} Transações selecionadas";
+        }
+        //Atualiza label de transações selecionadas ao marcar e desmarcar checkbox
+        public void atualizaQtdCheckbox()
+        {
+            int contador = 0;
+            foreach (DataGridViewRow linha in dataGridViewTransacoes.Rows)
+            { 
+                var cell = linha.Cells[0] as DataGridViewCheckBoxCell; 
+                if ((bool)cell.EditedFormattedValue)
+                {
+                    contador++;
+                }
+
+            }
+            lblQtdTransacoes.Text = $"{contador} Transações selecionadas";
         }
     }
 }

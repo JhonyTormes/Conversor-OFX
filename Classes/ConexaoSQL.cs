@@ -18,9 +18,9 @@ namespace Conversor_OFX.Models
 
         }
 
-        public bool testarConexao() 
+        public (bool Sucesso, bool AbrirFormConfig)  testarConexao() 
         {
-            //Testar Bannco e configurar
+            
             try
             {
 
@@ -37,7 +37,7 @@ namespace Conversor_OFX.Models
                 comando.ExecuteNonQuery();
                 Con.Close();
 
-                return true;
+                return (true, false);
             }
             catch (Exception ex)
             {
@@ -47,7 +47,13 @@ namespace Conversor_OFX.Models
                 {
                     MessageBox.Show("Login e senha incorretos, favor insira as informações novamente",
                 "Atenção", MessageBoxButtons.OK);
-                    return false;
+                    return (false,true);
+                }
+                else if (ex.Message.StartsWith("Não foi possível localizar o arquivo 'C:\\Config.txt'"))
+                {
+                    MessageBox.Show("Arquivo de configuração do banco de dados inexistente" +
+                                    ", favor insira as informações de acesso","Atenção", MessageBoxButtons.OK);
+                    return (false, true);
                 }
                 else if (ex.Message.StartsWith("Não é possível abrir o banco de dados"))
                 {
@@ -59,7 +65,7 @@ namespace Conversor_OFX.Models
                         MessageBox.Show("Para criar o banco copie o script a seguir e execute no SQL", "", MessageBoxButtons.OK);
                         frmScriptBanco scriptBanco = new frmScriptBanco();
                         scriptBanco.ShowDialog();
-                        return false;
+                        return (false, false);
                      
                     }
                     else if (resposta == DialogResult.No)
@@ -79,19 +85,19 @@ namespace Conversor_OFX.Models
                         frmScriptBanco scriptBanco = new frmScriptBanco();
                         scriptBanco.txbScript.Text = "USE CONVERSOR\r\n\r\nCREATE TABLE Transacoes(Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,\r\n\t\t\t\t\t\tTRNTYPE VARCHAR(10),\r\n\t\t\t\t\t\tDTPOSTED  VARCHAR(30),\r\n\t\t\t\t\t\tTRNAMT NVARCHAR(50),\r\n\t\t\t\t\t\tFITID NVARCHAR(50),\r\n\t\t\t\t\t\tCHECKNUM NVARCHAR(50),\r\n\t\t\t\t\t\tNAME VARCHAR(50),\r\n\t\t\t\t\t\tMEMO VARCHAR(100),\r\n\t\t\t\t\t\tSHA1 VARCHAR(40))";
                         scriptBanco.ShowDialog();
-                        
-                    }
-                    else if (resposta == DialogResult.No)
-                    {
-                        //voltar
-                    }
-                    return true;
+                        return (false, false);
+                    }                  
+                }
+                else if (ex.Message.StartsWith("Erro de rede ou específico à instância ao estabelecer conexão com o SQL Server"))
+                {
+                    MessageBox.Show("Não foi possível comunicar com a instância do SQL" +
+                                    ", verifique se o serviço do SQL está em execução", "Atenção", MessageBoxButtons.OK);
+                    return (false, false);
                 }
                 else
-                MessageBox.Show("Não foi possível comunicar com o banco de dados, favor insira as informações de acesso",
-                                "Atenção", MessageBoxButtons.OK);
+                MessageBox.Show($"Não foi possível comunicar com o banco de dados.\n Erro: {ex.Message}","Atenção!",MessageBoxButtons.OK);
                 
-                return false;
+                return (false, true);
                 throw;
             }
         }
