@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 
@@ -7,6 +8,7 @@ namespace Conversor_OFX.Models
 {
     public class ConexaoSQL
     {
+        
         public string Banco { get; set; }
         public string Usuario { get; set; }
         public string Senha { get; set; }
@@ -18,9 +20,13 @@ namespace Conversor_OFX.Models
 
         }
 
+
         public (bool Sucesso, bool AbrirFormConfig)  testarConexao() 
         {
-            
+            //Força a cultura pt-BR para o caso do idioma da máquina não estiver em português, evitando
+            //possíveis erros causados pela mudança nas mensagens das excessões, utilizadas para definir os Ifs do teste
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pt-BR");
+
             try
             {
 
