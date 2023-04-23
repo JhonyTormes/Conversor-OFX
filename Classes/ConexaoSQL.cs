@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Conversor_OFX.Classes;
+using System;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
@@ -68,15 +69,13 @@ namespace Conversor_OFX.Models
                         "Atenção", MessageBoxButtons.YesNo);
                     if (resposta == DialogResult.Yes)
                     {
-                        MessageBox.Show("Para criar o banco copie o script a seguir e execute no SQL", "", MessageBoxButtons.OK);
-                        frmScriptBanco scriptBanco = new frmScriptBanco();
-                        scriptBanco.ShowDialog();
+                        CriarBanco criarBanco = new CriarBanco();
+                        criarBanco.CriaBancoConversor();
+                        criarBanco.CriaTabelaTransacoes();
+                        MessageBox.Show("Banco de dados CONVERSOR criado com sucesso\n" +
+                                        "Tabela Transações criada com sucesso", "Sucesso", MessageBoxButtons.OK);
                         return (false, false);
                      
-                    }
-                    else if (resposta == DialogResult.No)
-                    {
-                        // voltar
                     }
                     
                 }
@@ -87,10 +86,9 @@ namespace Conversor_OFX.Models
                        "Atenção", MessageBoxButtons.YesNo);
                     if (resposta == DialogResult.Yes)
                     {
-                        MessageBox.Show("Para criar a tabela copie o script a seguir e execute no SQL", "", MessageBoxButtons.OK);
-                        frmScriptBanco scriptBanco = new frmScriptBanco();
-                        scriptBanco.txbScript.Text = "USE CONVERSOR\r\n\r\nCREATE TABLE Transacoes(Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,\r\n\t\t\t\t\t\tTRNTYPE VARCHAR(10),\r\n\t\t\t\t\t\tDTPOSTED  VARCHAR(30),\r\n\t\t\t\t\t\tTRNAMT NVARCHAR(50),\r\n\t\t\t\t\t\tFITID NVARCHAR(50),\r\n\t\t\t\t\t\tCHECKNUM NVARCHAR(50),\r\n\t\t\t\t\t\tNAME VARCHAR(50),\r\n\t\t\t\t\t\tMEMO VARCHAR(100),\r\n\t\t\t\t\t\tSHA1 VARCHAR(40))";
-                        scriptBanco.ShowDialog();
+                        CriarBanco criarBanco = new CriarBanco();
+                        criarBanco.CriaTabelaTransacoes();
+                        MessageBox.Show("Tabela Transações criada com sucesso", "Sucesso", MessageBoxButtons.OK);
                         return (false, false);
                     }                  
                 }

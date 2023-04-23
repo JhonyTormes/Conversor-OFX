@@ -47,4 +47,3 @@ C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.exe
 C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.pdb
 C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.frmTransacoes.resources
 C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.frmConfigBanco.resources
-C:\ProjetosJhony\Conversor OFX\obj\Debug\Conversor_OFX.frmScriptBanco.resources
