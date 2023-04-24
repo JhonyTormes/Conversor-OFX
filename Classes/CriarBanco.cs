@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Conversor_OFX.Classes
 {
@@ -30,6 +31,7 @@ namespace Conversor_OFX.Classes
             comando.Connection = Conectar();
             comando.ExecuteNonQuery();
             Con.Close();
+            MessageBox.Show("Banco de dados CONVERSOR criado com sucesso", "Sucesso", MessageBoxButtons.OK);
         }
 
         public void CriaTabelaTransacoes()
@@ -46,6 +48,7 @@ namespace Conversor_OFX.Classes
             comando.Connection = Conectar();
             comando.ExecuteNonQuery();
             Con.Close();
+            MessageBox.Show("Tabela Transações criada com sucesso", "Sucesso", MessageBoxButtons.OK);
         }
 
         public SqlConnection Conectar()

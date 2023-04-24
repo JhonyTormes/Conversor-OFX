@@ -1,8 +1,10 @@
 ﻿using Conversor_OFX.Classes;
 using System;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Runtime.Remoting.Channels;
 using System.Windows.Forms;
 
 namespace Conversor_OFX.Models
@@ -72,12 +74,14 @@ namespace Conversor_OFX.Models
                         CriarBanco criarBanco = new CriarBanco();
                         criarBanco.CriaBancoConversor();
                         criarBanco.CriaTabelaTransacoes();
-                        MessageBox.Show("Banco de dados CONVERSOR criado com sucesso\n" +
-                                        "Tabela Transações criada com sucesso", "Sucesso", MessageBoxButtons.OK);
                         return (false, false);
                      
                     }
-                    
+                    else if(resposta == DialogResult.No)
+                    {
+                        //Nenhuma ação por enquanto
+                    }
+
                 }
                 else if (ex.Message.StartsWith("Nome de objeto 'Transacoes' inválido"))
                 {
@@ -88,9 +92,12 @@ namespace Conversor_OFX.Models
                     {
                         CriarBanco criarBanco = new CriarBanco();
                         criarBanco.CriaTabelaTransacoes();
-                        MessageBox.Show("Tabela Transações criada com sucesso", "Sucesso", MessageBoxButtons.OK);
                         return (false, false);
-                    }                  
+                    }
+                    else if (resposta == DialogResult.No)
+                    {
+                        //Nenhuma ação por enquanto
+                    }
                 }
                 else if (ex.Message.StartsWith("Erro de rede ou específico à instância ao estabelecer conexão com o SQL Server"))
                 {
@@ -99,7 +106,8 @@ namespace Conversor_OFX.Models
                     return (false, false);
                 }
                 else
-                MessageBox.Show($"Não foi possível comunicar com o banco de dados.\n Erro: {ex.Message}","Atenção!",MessageBoxButtons.OK);
+                     MessageBox.Show($"Não foi possível comunicar com o banco de dados.\n Erro: {ex.Message}","Atenção!",MessageBoxButtons.RetryCancel);
+
                 
                 return (false, true);
                 throw;

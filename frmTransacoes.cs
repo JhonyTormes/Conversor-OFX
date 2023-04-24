@@ -18,6 +18,8 @@ namespace Conversor_OFX
         public List<BANKMSGSRSV1> objOFX { get; set; }
         XmlDocument arquivoXml = new XmlDocument();
         public OpenFileDialog CaminhoXML { get; set; }
+        public bool ConexaoBemSucedida { get; set; }
+        public bool AbrirFormConfig { get; set; }
         public frmTransacoes()
         {
             try
@@ -106,6 +108,7 @@ namespace Conversor_OFX
 
         private void btnSalvarNoBanco_Click(object sender, EventArgs e)
         {
+            
             int contarCheckBoxMarcadas = 0;
             foreach (DataGridViewRow row in dataGridViewTransacoes.Rows)
             {
@@ -123,19 +126,21 @@ namespace Conversor_OFX
                 int registrosNaoSalvos = 0;
 
                 ConexaoSQL conexao = new ConexaoSQL();
+                (ConexaoBemSucedida, AbrirFormConfig) = conexao.testarConexao();
+
                 do
                 {
-                    (bool sucesso, bool abrirFormConfig) = conexao.testarConexao();
-                    if (sucesso == false)
+                    if (ConexaoBemSucedida == false)
                     {
-                        if (abrirFormConfig == true)
+                        if (AbrirFormConfig == true)
                         {
                             frmConfigBanco configBanco = new frmConfigBanco();
                             configBanco.ShowDialog();
                         }
+                        (ConexaoBemSucedida, AbrirFormConfig) = conexao.testarConexao();
                     }
+                } while (!(ConexaoBemSucedida == true && AbrirFormConfig == false));
 
-                } while (conexao.testarConexao() != (true, false));
 
 
                 foreach (DataGridViewRow row in dataGridViewTransacoes.Rows)
