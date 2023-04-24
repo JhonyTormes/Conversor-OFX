@@ -52,7 +52,8 @@ namespace Conversor_OFX.Models
             {
                 Con.Close();
                 String mensagem = ex.Message;
-                if (ex.Message.StartsWith("Falha de logon do usuário")) 
+                if (ex.Message.StartsWith("Falha de logon do usuário") ||
+                    ex.Message.StartsWith("Login failed for user"))
                 {
                     MessageBox.Show("Login e senha incorretos, favor insira as informações novamente",
                 "Atenção", MessageBoxButtons.OK);
@@ -64,7 +65,8 @@ namespace Conversor_OFX.Models
                                     ", favor insira as informações de acesso","Atenção", MessageBoxButtons.OK);
                     return (false, true);
                 }
-                else if (ex.Message.StartsWith("Não é possível abrir o banco de dados"))
+                else if (ex.Message.StartsWith("Não é possível abrir o banco de dados") ||
+                         ex.Message.StartsWith("Cannot open database"))
                 {
                     DialogResult resposta = MessageBox.Show("O banco de dados CONVERSOR ainda não existe, gostaria" +
                         " de criá-lo?",
@@ -83,7 +85,8 @@ namespace Conversor_OFX.Models
                     }
 
                 }
-                else if (ex.Message.StartsWith("Nome de objeto 'Transacoes' inválido"))
+                else if (ex.Message.StartsWith("Nome de objeto 'Transacoes' inválido") ||
+                         ex.Message.StartsWith("Invalid object name 'Transacoes'"))
                 {
                     DialogResult resposta = MessageBox.Show("A tabela Transações não existe no banco de dados, gostaria" +
                        " de criá-la?",
