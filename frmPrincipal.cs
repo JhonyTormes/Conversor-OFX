@@ -159,6 +159,7 @@ namespace Conversor_OFX
             try
             {
                 frmTransacoes frmtransacoes = new frmTransacoes();
+                frmtransacoes.AbrirXML();
                 frmtransacoes.ShowDialog();
                 frmtransacoes.ColorirCelulas();
                 frmtransacoes.inserirValorEmNulos();

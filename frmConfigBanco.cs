@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Conversor_OFX.Classes;
+using Conversor_OFX.Models;
 
 namespace Conversor_OFX
 {
@@ -17,8 +18,6 @@ namespace Conversor_OFX
             ConfiguraBanco configuraBanco = new ConfiguraBanco();
             configuraBanco.ConfigBanco(txtBanco.Text, txbUsuario.Text, txbSenha.Text);
             Close();
-
         }
-        
     }
 }

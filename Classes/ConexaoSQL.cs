@@ -24,7 +24,7 @@ namespace Conversor_OFX.Models
         }
 
 
-        public (bool Sucesso, bool AbrirFormConfig)  testarConexao() 
+        public (bool Sucesso, bool AbrirFormConfig, bool CancelaTeste)  testarConexao() 
         {
             //Força a cultura pt-BR para o caso do idioma da máquina não estiver em português, evitando
             //possíveis erros causados pela mudança nas mensagens das excessões, utilizadas para definir os Ifs do teste
@@ -46,7 +46,7 @@ namespace Conversor_OFX.Models
                 comando.ExecuteNonQuery();
                 Con.Close();
 
-                return (true, false);
+                return (true, false,false);
             }
             catch (Exception ex)
             {
@@ -55,15 +55,29 @@ namespace Conversor_OFX.Models
                 if (ex.Message.StartsWith("Falha de logon do usuário") ||
                     ex.Message.StartsWith("Login failed for user"))
                 {
-                    MessageBox.Show("Login e senha incorretos, favor insira as informações novamente",
-                "Atenção", MessageBoxButtons.OK);
-                    return (false,true);
+                    DialogResult resposta = MessageBox.Show("Login e senha incorretos, favor insira as informações novamente",
+                "Atenção", MessageBoxButtons.OKCancel);
+                    if (resposta == DialogResult.OK)
+                    {
+                        return (false, true, false);
+                    }
+                    else if (resposta == DialogResult.Cancel)
+                    {
+                        return (false, false, true);
+                    }
                 }
                 else if (ex.Message.StartsWith("Não foi possível localizar o arquivo 'C:\\Config.txt'"))
                 {
-                    MessageBox.Show("Arquivo de configuração do banco de dados inexistente" +
-                                    ", favor insira as informações de acesso","Atenção", MessageBoxButtons.OK);
-                    return (false, true);
+                 DialogResult resposta = MessageBox.Show("Arquivo de configuração do banco de dados inexistente" +
+                                    ", favor insira as informações de acesso","Atenção", MessageBoxButtons.OKCancel);
+                    if (resposta == DialogResult.OK)
+                    {
+                        return (false, true, false);
+                    }
+                    else if (resposta == DialogResult.Cancel)
+                    {
+                        return (false, false, true);
+                    }
                 }
                 else if (ex.Message.StartsWith("Não é possível abrir o banco de dados") ||
                          ex.Message.StartsWith("Cannot open database"))
@@ -76,12 +90,12 @@ namespace Conversor_OFX.Models
                         CriarBanco criarBanco = new CriarBanco();
                         criarBanco.CriaBancoConversor();
                         criarBanco.CriaTabelaTransacoes();
-                        return (false, false);
+                        return (false, false, true);
                      
                     }
                     else if(resposta == DialogResult.No)
                     {
-                        //Nenhuma ação por enquanto
+                        return (false, false, true);
                     }
 
                 }
@@ -95,24 +109,31 @@ namespace Conversor_OFX.Models
                     {
                         CriarBanco criarBanco = new CriarBanco();
                         criarBanco.CriaTabelaTransacoes();
-                        return (false, false);
+                        return (false, false, true);
                     }
                     else if (resposta == DialogResult.No)
                     {
-                        //Nenhuma ação por enquanto
+                        return (false, false, true);
                     }
                 }
                 else if (ex.Message.StartsWith("Erro de rede ou específico à instância ao estabelecer conexão com o SQL Server"))
                 {
-                    MessageBox.Show("Não foi possível comunicar com a instância do SQL" +
-                                    ", verifique se o serviço do SQL está em execução", "Atenção", MessageBoxButtons.OK);
-                    return (false, false);
+                    DialogResult resposta = MessageBox.Show("Não foi possível comunicar com a instância do SQL" +
+                                    ", verifique se o serviço do SQL está em execução", "Atenção", MessageBoxButtons.RetryCancel);
+                    if (resposta == DialogResult.Retry)
+                    {
+                        return (false, false, false);
+                    }
+                    else if (resposta == DialogResult.Cancel)
+                    {
+                        return (false, false, true);
+                    }
                 }
                 else
                      MessageBox.Show($"Não foi possível comunicar com o banco de dados.\n Erro: {ex.Message}","Atenção!",MessageBoxButtons.RetryCancel);
 
                 
-                return (false, true);
+                return (false, true,false);
                 throw;
             }
         }

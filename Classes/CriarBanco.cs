@@ -48,7 +48,7 @@ namespace Conversor_OFX.Classes
             comando.Connection = Conectar();
             comando.ExecuteNonQuery();
             Con.Close();
-            MessageBox.Show("Tabela Transações criada com sucesso", "Sucesso", MessageBoxButtons.OK);
+            MessageBox.Show("Tabela Transações criada com sucesso\nClique em 'Salvar no banco' novamente para salvar as transações", "Sucesso", MessageBoxButtons.OK);
         }
 
         public SqlConnection Conectar()

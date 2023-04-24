@@ -10,6 +10,7 @@ using System.Xml;
 using Conversor_OFX.Classes;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Conversor_OFX
 {
@@ -20,33 +21,34 @@ namespace Conversor_OFX
         public OpenFileDialog CaminhoXML { get; set; }
         public bool ConexaoBemSucedida { get; set; }
         public bool AbrirFormConfig { get; set; }
-        public frmTransacoes()
-        {
-            try
+        public bool CancelaTeste { get; set; }
+
+        public void AbrirXML()
             {
-                //Abrir arquivo XML que será desserializado
-
-                InitializeComponent();
-                OpenFileDialog caminhoXML = new OpenFileDialog();
-                caminhoXML.Filter = "Arquivo XML | *.xml";
-                caminhoXML.ShowDialog();
-                CaminhoXML = caminhoXML;
-
-                using (StreamReader stream = new StreamReader(caminhoXML.FileName))
+                try
                 {
-                    XmlSerializer serializador = new XmlSerializer(typeof(List<BANKMSGSRSV1>), new XmlRootAttribute("OFX"));
-                    objOFX = (List<BANKMSGSRSV1>)serializador.Deserialize(stream);
+                    //Abrir arquivo XML que será desserializado
+
+                    InitializeComponent();
+                    OpenFileDialog caminhoXML = new OpenFileDialog();
+                    caminhoXML.Filter = "Arquivo XML | *.xml";
+                    caminhoXML.ShowDialog();
+                    CaminhoXML = caminhoXML;
+
+                    using (StreamReader stream = new StreamReader(caminhoXML.FileName))
+                    {
+                        XmlSerializer serializador = new XmlSerializer(typeof(List<BANKMSGSRSV1>), new XmlRootAttribute("OFX"));
+                        objOFX = (List<BANKMSGSRSV1>)serializador.Deserialize(stream);
+                    }
+
+                    dataGridViewTransacoes.DataSource = objOFX[0].STMTTRNRS.STMTRS.BANKTRANLIST.STMTTRN;
                 }
+                catch (Exception ex)
+                {
 
-                dataGridViewTransacoes.DataSource = objOFX[0].STMTTRNRS.STMTRS.BANKTRANLIST.STMTTRN;
+                    throw ex;
+                }
             }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-
-        }
 
         private void frmTransacoes_Load(object sender, EventArgs e)
         {
@@ -120,16 +122,21 @@ namespace Conversor_OFX
 
             if (contarCheckBoxMarcadas > 0)
             {
+
                 SalvarNoBanco salvarNoBanco = new SalvarNoBanco();
 
                 int registrosSalvos = 0;
                 int registrosNaoSalvos = 0;
 
                 ConexaoSQL conexao = new ConexaoSQL();
-                (ConexaoBemSucedida, AbrirFormConfig) = conexao.testarConexao();
+                (ConexaoBemSucedida, AbrirFormConfig, CancelaTeste) = conexao.testarConexao();
 
                 do
                 {
+                    if (CancelaTeste == true)
+                    {
+                        return;
+                    }
                     if (ConexaoBemSucedida == false)
                     {
                         if (AbrirFormConfig == true)
@@ -137,7 +144,7 @@ namespace Conversor_OFX
                             frmConfigBanco configBanco = new frmConfigBanco();
                             configBanco.ShowDialog();
                         }
-                        (ConexaoBemSucedida, AbrirFormConfig) = conexao.testarConexao();
+                        (ConexaoBemSucedida, AbrirFormConfig, CancelaTeste) = conexao.testarConexao();
                     }
                 } while (!(ConexaoBemSucedida == true && AbrirFormConfig == false));
 
